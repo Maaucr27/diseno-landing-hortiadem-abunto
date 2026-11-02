@@ -4,9 +4,9 @@ import { useState } from 'react'
 import { Menu, Sprout, X } from 'lucide-react'
 
 const links = [
-  { href: '#colecciones', label: 'Colecciones' },
-  { href: '#plantas', label: 'Plantas' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '/#colecciones', label: 'Colecciones' },
+  { href: '/#plantas', label: 'Plantas' },
+  { href: '/#contacto', label: 'Contacto' },
 ]
 
 export function Navbar() {
@@ -19,7 +19,7 @@ export function Navbar() {
         className="glass-green-strong mx-auto flex max-w-5xl items-center justify-between rounded-full py-2 pr-2 pl-5 text-emerald-50"
       >
         <a
-          href="#inicio"
+          href="/"
           className="flex items-center gap-2 rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-200"
         >
           <Sprout className="size-5 text-emerald-300" aria-hidden="true" />
@@ -41,7 +41,7 @@ export function Navbar() {
           ))}
           <li>
             <a
-              href="#plantas"
+              href="/#plantas"
               className="ml-1 inline-flex rounded-full bg-emerald-100 px-5 py-2 text-sm font-medium text-emerald-950 transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-200"
             >
               Ver catálogo
