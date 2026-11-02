@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Check, Droplets, MessageCircle, Plus, Sun } from 'lucide-react'
+import { FavoriteButton } from '@/components/favorite-button'
 import type { Product } from '@/lib/products'
 
 const priceFormatter = new Intl.NumberFormat('en-US', {
@@ -11,7 +12,13 @@ const priceFormatter = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 0,
 })
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({
+  product,
+  isFavorite,
+}: {
+  product: Product
+  isFavorite: boolean
+}) {
   const [added, setAdded] = useState(false)
 
   return (
@@ -34,6 +41,13 @@ export function ProductCard({ product }: { product: Product }) {
             {product.light}
           </li>
         </ul>
+        <div className="absolute top-3 right-3">
+          <FavoriteButton
+            plantId={product.id}
+            plantName={product.name}
+            initialFavorited={isFavorite}
+          />
+        </div>
       </div>
 
       <div className="flex flex-1 flex-col gap-4 p-5">
