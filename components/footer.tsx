@@ -1,10 +1,10 @@
 import { Clock, Mail, MapPin, Phone, Sprout } from 'lucide-react'
 
 const contacts = [
-  { icon: MapPin, label: 'Camino de los Cactos 120, Valle Verde' },
-  { icon: Phone, label: '+00 000 000 000', href: 'tel:+00000000000' },
-  { icon: Mail, label: 'hola@hortiademabunto.com', href: 'mailto:hola@hortiademabunto.com' },
-  { icon: Clock, label: 'Mar a Dom · 9:00 – 18:00' },
+  { icon: MapPin, label: 'Cebror de Salitre, Buenos Aires, Puntarenas, Costa Rica' },
+  { icon: Phone, label: '+506 8941 3752', href: 'tel:+506 8941 3752' },
+  { icon: Mail, label: 'prissosa100@gmail.com', href: 'mailto:prissosa100@gmail.com' },
+  { icon: Clock, label: 'Lun Dom · 9:00 – 20:00' },
 ]
 
 export function Footer() {
