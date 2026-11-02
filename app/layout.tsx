@@ -3,7 +3,6 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
 import './globals.css'
-import { WhatsAppButton } from "@/components/whatsapp-button"
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -60,7 +59,6 @@ export default function RootLayout({
           {children}
         </ClerkProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
-        <WhatsAppButton />
       </body>
     </html>
   )
