@@ -60,6 +60,7 @@ export default function RootLayout({
           {children}
         </ClerkProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        <WhatsAppButton />
       </body>
     </html>
   )
