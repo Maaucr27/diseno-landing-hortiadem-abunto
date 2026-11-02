@@ -14,6 +14,7 @@ export const plants = pgTable('plants', {
   stock: integer('stock').notNull().default(0),
   action: text('action').notNull().default('add'),
   sortOrder: integer('sort_order').notNull().default(0),
+  details: text('details'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 

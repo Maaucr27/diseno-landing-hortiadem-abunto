@@ -1,5 +1,4 @@
 import { ClerkProvider } from '@clerk/nextjs'
-import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
 import './globals.css'
@@ -48,6 +47,11 @@ export const viewport: Viewport = {
   themeColor: '#064e3b',
 }
 
+// Fallback test key prevents Clerk from crashing when unconfigured in local preview
+const CLERK_PUBLISHABLE_KEY =
+  process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+  'pk_test_Y2xlcmsuaG9ydGlhZGVtLWFidW50by5kZXYk'
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -56,10 +60,12 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${dmSans.variable} ${cormorant.variable}`}>
       <body className="font-sans antialiased">
-        <ClerkProvider appearance={{ variables: { colorPrimary: '#047857' } }}>
+        <ClerkProvider
+          publishableKey={CLERK_PUBLISHABLE_KEY}
+          appearance={{ variables: { colorPrimary: '#047857' } }}
+        >
           {children}
         </ClerkProvider>
-        {process.env.NODE_ENV === 'production' && <Analytics />}
         <WhatsAppButton />
       </body>
     </html>

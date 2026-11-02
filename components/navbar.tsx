@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Menu, Sprout, X } from 'lucide-react'
 import { AuthControls } from '@/components/auth-controls'
 
@@ -19,7 +20,7 @@ export function Navbar() {
         aria-label="Principal"
         className="glass-green-strong mx-auto flex max-w-5xl items-center justify-between rounded-full py-2 pr-2 pl-5 text-emerald-50"
       >
-        <a
+        <Link
           href="/"
           className="flex items-center gap-2 rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-200"
         >
@@ -27,26 +28,26 @@ export function Navbar() {
           <span className="font-serif text-xl leading-none font-semibold tracking-tight">
             Hortiadem <span className="text-emerald-300 italic">Abunto</span>
           </span>
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-1 md:flex">
           {links.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
                 className="rounded-full px-4 py-2 text-sm text-emerald-50/85 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-emerald-200"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
           <li>
-            <a
+            <Link
               href="/#plantas"
               className="ml-1 inline-flex rounded-full bg-emerald-100 px-5 py-2 text-sm font-medium text-emerald-950 transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-200"
             >
               Ver catálogo
-            </a>
+            </Link>
           </li>
           <li className="ml-1 flex items-center">
             <AuthControls />
@@ -81,13 +82,13 @@ export function Navbar() {
           <ul className="flex flex-col">
             {links.map((link) => (
               <li key={link.href}>
-                <a
+                <Link
                   href={link.href}
                   onClick={() => setOpen(false)}
                   className="block rounded-2xl px-4 py-3 text-base transition-colors hover:bg-white/10"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

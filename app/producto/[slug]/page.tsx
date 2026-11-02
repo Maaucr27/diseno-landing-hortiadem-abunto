@@ -11,15 +11,13 @@ import { DetailsAccordion } from '@/components/product-detail/details-accordion'
 import { CatalogNav } from '@/components/product-detail/catalog-nav'
 import { getPlantDetail, plantDetails } from '@/lib/plant-details'
 
-type PageProps = { params: Promise<{ slug: string }> }
+export const dynamic = 'force-dynamic'
 
-export function generateStaticParams() {
-  return plantDetails.map((plant) => ({ slug: plant.slug }))
-}
+type PageProps = { params: Promise<{ slug: string }> }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const plant = getPlantDetail(slug)
+  const plant = await getPlantDetail(slug)
   if (!plant) return {}
   return {
     title: `${plant.name} | Hortiadem Abunto`,
@@ -29,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params
-  const plant = getPlantDetail(slug)
+  const plant = await getPlantDetail(slug)
   if (!plant) notFound()
 
   return (

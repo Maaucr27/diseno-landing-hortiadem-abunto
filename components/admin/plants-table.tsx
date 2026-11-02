@@ -1,4 +1,5 @@
-import { Droplets, Pencil, Sun } from 'lucide-react'
+import { Droplets, ExternalLink, Pencil, Sun } from 'lucide-react'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { DeletePlantButton } from './delete-plant-button'
 import { InlineNumberField } from './inline-number-field'
@@ -143,6 +144,16 @@ export function PlantsTable({ plants }: { plants: EditablePlant[] }) {
                 <td className="px-3 py-3 tabular-nums text-emerald-100/70">{plant.sortOrder}</td>
                 <td className="px-5 py-3">
                   <div className="flex justify-end gap-2">
+                    <Link
+                      href={`/producto/${plant.id}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Ver ficha de ${plant.name}`}
+                      title="Ver ficha de producto en vivo"
+                      className={`inline-flex size-9 items-center justify-center rounded-lg border border-white/10 ${adminGhostButton}`}
+                    >
+                      <ExternalLink className="size-4" aria-hidden="true" />
+                    </Link>
                     <EditButton plant={plant} />
                     <DeletePlantButton id={plant.id} name={plant.name} />
                   </div>
@@ -175,6 +186,16 @@ export function PlantsTable({ plants }: { plants: EditablePlant[] }) {
                 </label>
               </div>
               <div className="flex gap-2">
+                <Link
+                  href={`/producto/${plant.id}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Ver ficha de ${plant.name}`}
+                  title="Ver ficha en vivo"
+                  className={`inline-flex size-9 items-center justify-center rounded-lg border border-white/10 ${adminGhostButton}`}
+                >
+                  <ExternalLink className="size-4" aria-hidden="true" />
+                </Link>
                 <EditButton plant={plant} />
                 <DeletePlantButton id={plant.id} name={plant.name} />
               </div>

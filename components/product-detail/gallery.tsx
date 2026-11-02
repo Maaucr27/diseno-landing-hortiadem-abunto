@@ -5,8 +5,19 @@ import Image from 'next/image'
 import type { GalleryImage } from '@/lib/plant-details'
 
 export function Gallery({ images }: { images: GalleryImage[] }) {
-  const [activeId, setActiveId] = useState(images[0].id)
-  const active = images.find((image) => image.id === activeId) ?? images[0]
+  const validImages =
+    images && images.length > 0
+      ? images
+      : [
+          {
+            id: 'default',
+            src: '/images/rosa-del-desierto.png',
+            alt: 'Fotografía de planta',
+            label: 'Vista Principal',
+          },
+        ]
+  const [activeId, setActiveId] = useState(validImages[0].id)
+  const active = validImages.find((image) => image.id === activeId) ?? validImages[0]
 
   return (
     <div className="flex flex-col gap-4">
@@ -27,8 +38,9 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
         </p>
       </div>
 
-      <ul className="grid grid-cols-4 gap-3" aria-label="Miniaturas de la galería">
-        {images.map((image) => {
+      {validImages.length > 1 ? (
+        <ul className="grid grid-cols-4 gap-3" aria-label="Miniaturas de la galería">
+          {validImages.map((image) => {
           const selected = image.id === active.id
           return (
             <li key={image.id}>
@@ -57,6 +69,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
           )
         })}
       </ul>
+      ) : null}
     </div>
   )
 }

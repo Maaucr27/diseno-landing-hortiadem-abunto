@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { Plus } from 'lucide-react'
 import { AdminHeader } from '@/components/admin/admin-header'
+import { EmailCampaignDialog } from '@/components/admin/email-campaign-dialog'
 import { InventoryStats } from '@/components/admin/inventory-stats'
 import { PlantFormDialog } from '@/components/admin/plant-form-dialog'
 import { PlantsTable } from '@/components/admin/plants-table'
@@ -25,17 +26,20 @@ export default async function AdminPage() {
               Inventario
             </h1>
             <p className="mt-1 text-emerald-100/70">
-              Administra las plantas del catálogo de Abunto.
+              Administra las plantas del catálogo de Abunto y sus fichas de producto.
             </p>
           </div>
-          <PlantFormDialog
-            trigger={
-              <Button type="button" size="lg" className={adminPrimaryButton}>
-                <Plus className="size-4" aria-hidden="true" />
-                Nueva planta
-              </Button>
-            }
-          />
+          <div className="flex flex-wrap items-center gap-3">
+            <EmailCampaignDialog />
+            <PlantFormDialog
+              trigger={
+                <Button type="button" size="lg" className={adminPrimaryButton}>
+                  <Plus className="size-4" aria-hidden="true" />
+                  Nueva planta
+                </Button>
+              }
+            />
+          </div>
         </div>
 
         <InventoryStats plants={plants} />

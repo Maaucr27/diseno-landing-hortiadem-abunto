@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Check, Droplets, MessageCircle, Plus, Sun } from 'lucide-react'
 import { FavoriteButton } from '@/components/favorite-button'
 import type { Product } from '@/lib/products'
@@ -24,14 +25,20 @@ export function ProductCard({
   return (
     <article className="group flex w-full flex-col overflow-hidden rounded-3xl border border-emerald-900/10 bg-white/70 shadow-sm shadow-emerald-950/5 backdrop-blur-md transition-shadow duration-300 hover:shadow-xl hover:shadow-emerald-950/10">
       <div className="relative aspect-square overflow-hidden">
-        <Image
-          src={product.image}
-          alt={product.imageAlt}
-          fill
-          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-        />
-        <ul className="absolute top-3 left-3 flex flex-col gap-1.5" aria-label="Cuidados">
+        <Link
+          href={`/producto/${product.id}`}
+          className="relative block size-full cursor-pointer"
+          title={`Ver ficha técnica de ${product.name}`}
+        >
+          <Image
+            src={product.image}
+            alt={product.imageAlt}
+            fill
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+        </Link>
+        <ul className="pointer-events-none absolute top-3 left-3 flex flex-col gap-1.5" aria-label="Cuidados">
           <li className="glass-green-strong flex w-fit items-center gap-1.5 rounded-full px-3 py-1 text-xs text-emerald-50">
             <Droplets className="size-3.5 text-sky-200" aria-hidden="true" />
             {product.water}
@@ -41,7 +48,7 @@ export function ProductCard({
             {product.light}
           </li>
         </ul>
-        <div className="absolute top-3 right-3">
+        <div className="absolute top-3 right-3 z-10">
           <FavoriteButton
             plantId={product.id}
             plantName={product.name}
@@ -56,7 +63,12 @@ export function ProductCard({
             {product.category}
           </p>
           <h3 className="mt-1 font-serif text-2xl leading-tight font-semibold text-emerald-950">
-            {product.name}
+            <Link
+              href={`/producto/${product.id}`}
+              className="transition-colors hover:text-emerald-700"
+            >
+              {product.name}
+            </Link>
           </h3>
           <p className="text-sm text-emerald-800/70 italic">{product.scientificName}</p>
           <p className="mt-3 text-sm leading-relaxed text-pretty text-emerald-950/70">

@@ -12,9 +12,21 @@ const priceFormatter = new Intl.NumberFormat('en-US', {
 
 export function PurchasePanel({ sizes }: { sizes: PlantSize[] }) {
   const groupName = useId()
-  const [sizeId, setSizeId] = useState(sizes[0].id)
+  const validSizes =
+    sizes && sizes.length > 0
+      ? sizes
+      : [
+          {
+            id: 'estandar',
+            label: 'Presentación Estándar',
+            description: 'Ejemplar cultivado en el vivero',
+            price: 45,
+            stock: 'Disponible',
+          },
+        ]
+  const [sizeId, setSizeId] = useState(validSizes[0].id)
   const [reserved, setReserved] = useState(false)
-  const selected = sizes.find((size) => size.id === sizeId) ?? sizes[0]
+  const selected = validSizes.find((size) => size.id === sizeId) ?? validSizes[0]
 
   function selectSize(id: string) {
     setSizeId(id)
@@ -36,7 +48,7 @@ export function PurchasePanel({ sizes }: { sizes: PlantSize[] }) {
           Presentación
         </legend>
         <div className="flex flex-col gap-3">
-          {sizes.map((size) => (
+          {validSizes.map((size) => (
             <label
               key={size.id}
               className="glass-green group relative flex cursor-pointer items-center gap-4 rounded-2xl p-4 transition-all duration-200 hover:bg-emerald-900/70 has-checked:border-emerald-300/80 has-checked:bg-emerald-800/70 has-checked:ring-1 has-checked:ring-emerald-300/60 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-emerald-300"

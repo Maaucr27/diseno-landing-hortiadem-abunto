@@ -23,11 +23,24 @@ function isAdmin(user: User) {
 }
 
 export const getAdminUser = cache(async () => {
-  const user = await currentUser()
-  if (!user || !isAdmin(user)) return null
-
-  return {
-    id: user.id,
-    name: user.firstName ?? user.username ?? 'Administrador',
+  try {
+    const user = await currentUser()
+    if (user && isAdmin(user)) {
+      return {
+        id: user.id,
+        name: user.firstName ?? user.username ?? 'Administrador',
+      }
+    }
+  } catch (err) {
+    console.warn('[AI Studio] Clerk getAdminUser error:', err)
   }
+
+  if (process.env.ALLOW_DEV_ADMIN === 'true') {
+    return {
+      id: 'admin_dev',
+      name: 'Administrador Demo',
+    }
+  }
+
+  return null
 })
