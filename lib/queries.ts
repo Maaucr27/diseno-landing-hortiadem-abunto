@@ -23,6 +23,10 @@ export const getProducts = cache(async (): Promise<Product[]> => {
   }))
 })
 
+export async function getAdminPlants() {
+  return db.select().from(plants).orderBy(asc(plants.sortOrder), asc(plants.name))
+}
+
 export async function getFavoritePlantIds(): Promise<string[]> {
   const { userId } = await auth()
   if (!userId) return []
