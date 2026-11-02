@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Menu, Sprout, X } from 'lucide-react'
+import { AuthControls } from '@/components/auth-controls'
 
 const links = [
   { href: '/#colecciones', label: 'Colecciones' },
@@ -47,7 +48,14 @@ export function Navbar() {
               Ver catálogo
             </a>
           </li>
+          <li className="ml-1 flex items-center">
+            <AuthControls />
+          </li>
         </ul>
+
+        <div className="flex items-center gap-1 md:hidden">
+          <AuthControls />
+        </div>
 
         <button
           type="button"

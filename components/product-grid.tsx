@@ -1,7 +1,10 @@
-import { products } from '@/lib/products'
+import { getFavoritePlantIds, getProducts } from '@/lib/queries'
 import { ProductCard } from '@/components/product-card'
 
-export function ProductGrid() {
+export async function ProductGrid() {
+  const [products, favoriteIds] = await Promise.all([getProducts(), getFavoritePlantIds()])
+  const favorites = new Set(favoriteIds)
+
   return (
     <section id="plantas" className="relative isolate overflow-hidden bg-emerald-50 py-24 sm:py-32">
       <div
@@ -29,7 +32,7 @@ export function ProductGrid() {
         <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((product) => (
             <li key={product.id} className="flex">
-              <ProductCard product={product} />
+              <ProductCard product={product} isFavorite={favorites.has(product.id)} />
             </li>
           ))}
         </ul>

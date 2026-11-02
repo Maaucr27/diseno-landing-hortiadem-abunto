@@ -1,3 +1,4 @@
+import { ClerkProvider } from '@clerk/nextjs'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
@@ -54,7 +55,9 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${dmSans.variable} ${cormorant.variable}`}>
       <body className="font-sans antialiased">
-        {children}
+        <ClerkProvider appearance={{ variables: { colorPrimary: '#047857' } }}>
+          {children}
+        </ClerkProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
